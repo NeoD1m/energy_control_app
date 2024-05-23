@@ -31,7 +31,7 @@ class TopicList extends StatelessWidget {
                       return Center(child: Text('Error: ${snapshot.error}'));
                     } else if (isDownloadedSnapshot.hasData) {
                       return TopicWidget(
-                        pdfId: topic.id,
+                        id: topic.id,
                         title: topic.title,
                         isFavourite: topic.isFavourite,
                         isDownloaded: isDownloadedSnapshot.data!,

@@ -12,7 +12,7 @@ class FileViewerWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SfPdfViewer.network(
-        '$apiUrl/file/$pdfId',
+        '$apiUrl/files/$pdfId',
       ),
     );
   }

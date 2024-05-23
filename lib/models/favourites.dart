@@ -27,7 +27,7 @@ Future<void> addToFavorites({required int fileId}) async {
 
 Future<void> removeFromFavorites({required int fileId}) async {
   String userId = await getUserId() ?? "";
-  final String url = '$apiUrl/favorites/$userId/$fileId';
+  final String url = '$apiUrl/favourites/$userId/$fileId';
 
   try {
     final response = await http.delete(Uri.parse(url));

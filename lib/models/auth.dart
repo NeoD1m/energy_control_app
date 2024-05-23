@@ -24,7 +24,7 @@ Future<bool> userIdExists() async {
 }
 
 Future<String> registerUser(String name, String password) async {
-  String url = '$apiUrl/register';
+  String url = '$apiUrl/auth/register';
   var response;
   try {
     response = await http.post(
@@ -52,7 +52,7 @@ Future<String> registerUser(String name, String password) async {
 }
 
 Future<String> loginUser(String name, String password) async {
-  String url = '$apiUrl/login';
+  String url = '$apiUrl/auth/login';
   var response;
   try {
     response = await http.post(

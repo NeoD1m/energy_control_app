@@ -23,12 +23,12 @@ class Topic {
 class TopicWidget extends StatefulWidget {
   TopicWidget(
       {super.key,
-      required this.pdfId,
+      required this.id,
       required this.title,
       required this.isFavourite,
       required this.isDownloaded});
 
-  int pdfId;
+  int id;
   String title;
   bool isFavourite;
   bool isDownloaded;
@@ -41,9 +41,9 @@ class _TopicWidgetState extends State<TopicWidget> {
   void setFavourite(bool isFavourite) {
     setState(() {
       if (isFavourite) {
-        addToFavorites(fileId: widget.pdfId);
+        addToFavorites(fileId: widget.id);
       } else {
-        removeFromFavorites(fileId: widget.pdfId);
+        removeFromFavorites(fileId: widget.id);
       }
       widget.isFavourite = isFavourite;
     });
@@ -62,7 +62,7 @@ class _TopicWidgetState extends State<TopicWidget> {
                   onPressed: () => {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => FileViewerWidget(
-                              pdfId: widget.pdfId,
+                              pdfId: widget.id,
                             )))
                   },
                   style: TextButton.styleFrom(
@@ -92,10 +92,10 @@ class _TopicWidgetState extends State<TopicWidget> {
                 ),
                 onPressed: () {
                   if (widget.isDownloaded) {
-                    deleteDownloadedFile(widget.pdfId);
+                    deleteDownloadedFile(widget.id);
                   } else {
                     downloadAndSavePdf(
-                        id: widget.pdfId, title: widget.title, type: '');
+                        id: widget.id, title: widget.title, type: '');
                   }
                   setState(() {
                     widget.isDownloaded = !widget.isDownloaded;

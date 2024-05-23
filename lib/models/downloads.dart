@@ -10,7 +10,7 @@ Future<void> downloadAndSavePdf(
   try {
     final dio = Dio();
     final response = await dio.get(
-      '$apiUrl/file/$id',
+      '$apiUrl/files/$id',
       options: Options(responseType: ResponseType.bytes),
     );
     final dir = await getApplicationDocumentsDirectory();

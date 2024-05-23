@@ -120,7 +120,7 @@ class TopicList extends StatelessWidget {
                           child: Text('Error: ${isDownloadedSnapshot.error}'));
                     } else if (isDownloadedSnapshot.hasData) {
                       return TopicWidget(
-                        pdfId: topic.id,
+                        id: topic.id,
                         title: topic.title,
                         isFavourite: topic.isFavourite,
                         isDownloaded: isDownloadedSnapshot.data!,
@@ -144,7 +144,7 @@ class TopicList extends StatelessWidget {
 Future<List<Topic>> fetchTopics(String searchQuery) async {
   String userId = await getUserId() ?? "";
   final response = await http.post(
-    Uri.parse('$apiUrl/search'),
+    Uri.parse('$apiUrl/files/search'),
     headers: {"Content-Type": "application/json"},
     body: json.encode({
       "searchQuery": searchQuery,

@@ -1,7 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/downloaded_file.dart';
 import '../models/downloads.dart';
 import '../widgets/local_file_viewer.dart';
@@ -44,21 +41,12 @@ class _DownloadsPageState extends State<DownloadsPage> {
               itemCount: downloadedFiles.length,
               itemBuilder: (context, index) {
                 final file = downloadedFiles[index];
-                return DownloadedTopicWidget(pdfId: file.id, title: file.title, path: file.path, isDownloaded: true,
-
+                return DownloadedTopicWidget(
+                  pdfId: file.id,
+                  title: file.title,
+                  path: file.path,
+                  isDownloaded: true,
                 );
-                // return TextButton(
-                //   onPressed: () => {
-                //     Navigator.of(context).push(MaterialPageRoute(
-                //         builder: (context) => DownloadedFileViewerWidget(
-                //           localFilePath: file.path,
-                //         )))
-                //   },
-                //   child: ListTile(
-                //     title: Text(file.title),
-                //     subtitle: Text(file.path),
-                //   ),
-                // );
               },
             );
           }
@@ -69,7 +57,12 @@ class _DownloadsPageState extends State<DownloadsPage> {
 }
 
 class DownloadedTopicWidget extends StatefulWidget {
-  DownloadedTopicWidget({super.key, required this.pdfId, required this.title, required this.path, required this.isDownloaded});
+  DownloadedTopicWidget(
+      {super.key,
+      required this.pdfId,
+      required this.title,
+      required this.path,
+      required this.isDownloaded});
 
   int pdfId;
   String title;
@@ -81,7 +74,6 @@ class DownloadedTopicWidget extends StatefulWidget {
 }
 
 class _DownloadedTopicWidgetState extends State<DownloadedTopicWidget> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -92,21 +84,16 @@ class _DownloadedTopicWidgetState extends State<DownloadedTopicWidget> {
             children: [
               Expanded(
                 child: TextButton(
-                  onPressed: () =>
-                  {
+                  onPressed: () => {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            DownloadedFileViewerWidget(
+                        builder: (context) => DownloadedFileViewerWidget(
                               localFilePath: widget.path,
                             )))
                   },
                   style: TextButton.styleFrom(
-                    padding:
-                    const EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                         left: 12, right: 12, top: 8, bottom: 8),
-                    backgroundColor: Theme
-                        .of(context)
-                        .canvasColor,
+                    backgroundColor: Theme.of(context).canvasColor,
                     primary: Colors.white,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(0)),
@@ -121,35 +108,25 @@ class _DownloadedTopicWidgetState extends State<DownloadedTopicWidget> {
               ),
               IconButton(
                 icon: Icon(
-                  widget.isDownloaded ? Icons.delete_forever : Icons
-                      .download_outlined,
-                  color: widget.isDownloaded ? Theme
-                      .of(context)
-                      .colorScheme
-                      .inversePrimary : Colors.grey,
+                  widget.isDownloaded
+                      ? Icons.delete_forever
+                      : Icons.download_outlined,
+                  color: widget.isDownloaded
+                      ? Theme.of(context).colorScheme.inversePrimary
+                      : Colors.grey,
                 ),
                 onPressed: () {
                   if (widget.isDownloaded) {
                     deleteDownloadedFile(widget.pdfId);
                   } else {
-                    downloadAndSavePdf(id: widget.pdfId,
-                        title: widget.title,
-                        type: ''); // todo maybe add type to sort
+                    downloadAndSavePdf(
+                        id: widget.pdfId, title: widget.title, type: '');
                   }
                   setState(() {
                     widget.isDownloaded = !widget.isDownloaded;
                   });
                 },
               ),
-              // IconButton(
-              //   icon: Icon(
-              //     widget.isFavourite ? Icons.star : Icons.star_border,
-              //     color: widget.isFavourite ? Colors.amber : Colors.grey,
-              //   ),
-              //   onPressed: () {
-              //     setFavourite(!widget.isFavourite);
-              //   },
-              // ),
             ],
           ),
         ),

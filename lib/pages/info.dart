@@ -30,9 +30,9 @@ class _InfoPageState extends State<InfoPage> {
 }
 
 Future<List<Topic>> fetchTopics() async {
-  String userId = await getUserId()??"";
+  String userId = await getUserId() ?? "";
   final response =
-  await http.get(Uri.parse('$apiUrl/files?type=info&userId=$userId'));
+      await http.get(Uri.parse('$apiUrl/files?type=info&userId=$userId'));
 
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);

@@ -30,9 +30,9 @@ class _NewsPageState extends State<NewsPage> {
 }
 
 Future<List<Topic>> fetchTopics() async {
-  String userId = await getUserId()??"";
+  String userId = await getUserId() ?? "";
   final response =
-  await http.get(Uri.parse('$apiUrl/files?type=news&userId=$userId'));
+      await http.get(Uri.parse('$apiUrl/files?type=news&userId=$userId'));
 
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);

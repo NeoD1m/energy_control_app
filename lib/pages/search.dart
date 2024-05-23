@@ -96,16 +96,6 @@ class TopicList extends StatelessWidget {
 
   final String searchQuery;
 
-  // Future<List<Topic>> fetchTopics(String query) async {
-  //   // Implement your fetch logic here
-  //   // This is just a placeholder for the actual fetch logic
-  //   return [
-  //     // Sample data
-  //     Topic(id: 1, title: 'Sample Topic 1', isFavourite: false),
-  //     Topic(id: 2, title: 'Sample Topic 2', isFavourite: true),
-  //   ];
-  // }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Topic>>(
@@ -152,11 +142,14 @@ class TopicList extends StatelessWidget {
 }
 
 Future<List<Topic>> fetchTopics(String searchQuery) async {
-  String userId = await getUserId()??"";
+  String userId = await getUserId() ?? "";
   final response = await http.post(
     Uri.parse('$apiUrl/search'),
     headers: {"Content-Type": "application/json"},
-    body: json.encode({"searchQuery": searchQuery, "userId": userId}), // Include userId in the request
+    body: json.encode({
+      "searchQuery": searchQuery,
+      "userId": userId
+    }), // Include userId in the request
   );
 
   if (response.statusCode == 200) {

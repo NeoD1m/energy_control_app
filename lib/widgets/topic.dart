@@ -1,7 +1,6 @@
 import 'package:EnergyControl/models/downloaded_file.dart';
 import 'package:EnergyControl/widgets/file_viewer.dart';
 import 'package:flutter/material.dart';
-
 import '../models/downloads.dart';
 import '../models/favourites.dart';
 
@@ -22,7 +21,12 @@ class Topic {
 }
 
 class TopicWidget extends StatefulWidget {
-  TopicWidget({super.key, required this.pdfId, required this.title, required this.isFavourite, required this.isDownloaded});
+  TopicWidget(
+      {super.key,
+      required this.pdfId,
+      required this.title,
+      required this.isFavourite,
+      required this.isDownloaded});
 
   int pdfId;
   String title;
@@ -34,10 +38,9 @@ class TopicWidget extends StatefulWidget {
 }
 
 class _TopicWidgetState extends State<TopicWidget> {
-
   void setFavourite(bool isFavourite) {
     setState(() {
-      if (isFavourite){
+      if (isFavourite) {
         addToFavorites(fileId: widget.pdfId);
       } else {
         removeFromFavorites(fileId: widget.pdfId);
@@ -63,8 +66,8 @@ class _TopicWidgetState extends State<TopicWidget> {
                             )))
                   },
                   style: TextButton.styleFrom(
-                    padding:
-                        const EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 8),
+                    padding: const EdgeInsets.only(
+                        left: 12, right: 12, top: 8, bottom: 8),
                     backgroundColor: Theme.of(context).canvasColor,
                     primary: Colors.white,
                     shape: const RoundedRectangleBorder(
@@ -80,14 +83,19 @@ class _TopicWidgetState extends State<TopicWidget> {
               ),
               IconButton(
                 icon: Icon(
-                  widget.isDownloaded ? Icons.delete_forever : Icons.download_outlined,
-                  color: widget.isDownloaded ? Theme.of(context).colorScheme.inversePrimary : Colors.grey,
+                  widget.isDownloaded
+                      ? Icons.delete_forever
+                      : Icons.download_outlined,
+                  color: widget.isDownloaded
+                      ? Theme.of(context).colorScheme.inversePrimary
+                      : Colors.grey,
                 ),
                 onPressed: () {
-                  if (widget.isDownloaded){
+                  if (widget.isDownloaded) {
                     deleteDownloadedFile(widget.pdfId);
                   } else {
-                    downloadAndSavePdf(id: widget.pdfId, title: widget.title, type: ''); // todo maybe add type to sort
+                    downloadAndSavePdf(
+                        id: widget.pdfId, title: widget.title, type: '');
                   }
                   setState(() {
                     widget.isDownloaded = !widget.isDownloaded;

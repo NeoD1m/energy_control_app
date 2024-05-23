@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-
 import '../pages/home.dart';
 
 class NoInternetButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const NoInternetButton({
-    Key? key,
-    required this.onPressed,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.warning_sharp, size: 40,),
+        Icon(
+          Icons.warning_sharp,
+          size: 40,
+        ),
         Container(
-          margin: EdgeInsets.only(left: 35,top: 15, bottom: 15, right: 35),
+          margin: EdgeInsets.only(left: 35, top: 15, bottom: 15, right: 35),
           child: Center(
             child: Text(
               "У Вас нет интернета или возникли проблемы с подключением.",
-              style: TextStyle(color: Colors.white, fontSize: 16.0),textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white, fontSize: 16.0),
+              textAlign: TextAlign.center,
             ),
           ),
         ),

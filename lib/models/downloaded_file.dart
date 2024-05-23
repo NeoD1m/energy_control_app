@@ -62,7 +62,7 @@ Future<void> addDownloadedFile(DownloadedFile file) async {
     if (!fileExists) {
       files.add(file);
       List<String> updatedJsonList =
-      files.map((file) => jsonEncode(file.toJson())).toList();
+          files.map((file) => jsonEncode(file.toJson())).toList();
       prefs.setStringList('downloaded_files', updatedJsonList);
     }
   } else {
@@ -97,7 +97,7 @@ Future<void> deleteDownloadedFile(int fileId) async {
     files.removeWhere((file) => file.id == fileId);
 
     List<String> updatedJsonList =
-    files.map((file) => jsonEncode(file.toJson())).toList();
+        files.map((file) => jsonEncode(file.toJson())).toList();
     prefs.setStringList('downloaded_files', updatedJsonList);
   }
 }

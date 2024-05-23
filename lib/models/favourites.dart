@@ -4,7 +4,7 @@ import 'package:EnergyControl/models/auth.dart';
 import 'package:http/http.dart' as http;
 
 Future<void> addToFavorites({required int fileId}) async {
-  String userId = await getUserId()??"";
+  String userId = await getUserId() ?? "";
 
   final url = Uri.parse('$apiUrl/favourites/add');
   final headers = {"Content-Type": "application/json"};
@@ -26,7 +26,7 @@ Future<void> addToFavorites({required int fileId}) async {
 }
 
 Future<void> removeFromFavorites({required int fileId}) async {
-  String userId = await getUserId()??"";
+  String userId = await getUserId() ?? "";
   final String url = '$apiUrl/favorites/$userId/$fileId';
 
   try {

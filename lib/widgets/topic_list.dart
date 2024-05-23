@@ -1,11 +1,11 @@
 import 'package:EnergyControl/widgets/topic.dart';
 import 'package:flutter/material.dart';
-
 import '../models/downloaded_file.dart';
 import 'no_internet_button.dart';
 
 class TopicList extends StatelessWidget {
   TopicList({super.key, required this.fetch});
+
   final Future<List<Topic>> Function() fetch;
 
   @override
@@ -16,10 +16,7 @@ class TopicList extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Center(
-              child: NoInternetButton(onPressed: () {
-                // todo callback to change page
-              },));
+          return Center(child: NoInternetButton());
         } else if (snapshot.hasData) {
           return SingleChildScrollView(
             child: Column(

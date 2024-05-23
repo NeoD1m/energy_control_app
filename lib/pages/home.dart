@@ -4,12 +4,11 @@ import 'package:EnergyControl/pages/info.dart';
 import 'package:EnergyControl/pages/news.dart';
 import 'package:EnergyControl/pages/search.dart';
 import 'package:EnergyControl/widgets/navigation_drawer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'downloads.dart';
 
-enum PageType { news, search, bookmarks, help, info, downloads}
+enum PageType { news, search, bookmarks, help, info, downloads }
+
 final GlobalKey<_HomePageState> homePageKey = GlobalKey<_HomePageState>();
 
 class HomePage extends StatefulWidget {

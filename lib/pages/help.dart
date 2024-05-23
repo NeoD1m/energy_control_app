@@ -65,7 +65,6 @@ class _HelpPageState extends State<HelpPage> {
                     width: 250,
                     child: ElevatedButton(
                       style: TextButton.styleFrom(
-
                         padding: const EdgeInsets.only(
                             left: 12, right: 12, top: 8, bottom: 8),
                         backgroundColor: Colors.lightBlue,
@@ -85,17 +84,16 @@ class _HelpPageState extends State<HelpPage> {
         ));
   }
 }
+
 Future<void> launchMailClient() async {
   final Uri emailLaunchUri = Uri(
     scheme: 'mailto',
     path: "dmitrydavydovv@gmail.com",
-    queryParameters: {
-      'subject': '',
-      'body': ''
-    },
+    queryParameters: {'subject': '', 'body': ''},
   );
   launchUrl(emailLaunchUri);
 }
+
 Future<void> launchTelegram() async {
   final Uri url = Uri.parse('https://t.me/neod1m');
   if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../models/auth.dart';
@@ -18,10 +17,10 @@ class _BookmarksPageState extends State<BookmarksPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Закладки"),
-      ),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text("Закладки"),
+        ),
         body: Scaffold(
           body: TopicList(
             fetch: fetchTopics,
@@ -31,9 +30,8 @@ class _BookmarksPageState extends State<BookmarksPage> {
 }
 
 Future<List<Topic>> fetchTopics() async {
-  String userId = await getUserId()??"";
-  final response =
-  await http.get(Uri.parse('$apiUrl/favourites/$userId'));
+  String userId = await getUserId() ?? "";
+  final response = await http.get(Uri.parse('$apiUrl/favourites/$userId'));
 
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);

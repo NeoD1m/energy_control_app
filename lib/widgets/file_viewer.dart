@@ -4,6 +4,7 @@ import '../main.dart';
 
 class FileViewerWidget extends StatelessWidget {
   const FileViewerWidget({super.key, required this.pdfId});
+
   final int pdfId;
 
   @override

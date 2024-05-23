@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../main.dart';
+import '../models/downloaded_file.dart';
 import '../widgets/topic.dart';
 
 class SearchPage extends StatefulWidget {
@@ -93,7 +94,17 @@ class Search extends StatelessWidget {
 class TopicList extends StatelessWidget {
   TopicList({super.key, required this.searchQuery});
 
-  String searchQuery;
+  final String searchQuery;
+
+  // Future<List<Topic>> fetchTopics(String query) async {
+  //   // Implement your fetch logic here
+  //   // This is just a placeholder for the actual fetch logic
+  //   return [
+  //     // Sample data
+  //     Topic(id: 1, title: 'Sample Topic 1', isFavourite: false),
+  //     Topic(id: 2, title: 'Sample Topic 2', isFavourite: true),
+  //   ];
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -107,13 +118,29 @@ class TopicList extends StatelessWidget {
         } else if (snapshot.hasData) {
           return SingleChildScrollView(
             child: Column(
-              children: snapshot.data!
-                  .map((topic) => TopicWidget(
+              children: snapshot.data!.map((topic) {
+                return FutureBuilder<bool>(
+                  future: isDownloaded(topic.id),
+                  builder: (context, isDownloadedSnapshot) {
+                    if (isDownloadedSnapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (isDownloadedSnapshot.hasError) {
+                      return Center(
+                          child: Text('Error: ${isDownloadedSnapshot.error}'));
+                    } else if (isDownloadedSnapshot.hasData) {
+                      return TopicWidget(
                         pdfId: topic.id,
                         title: topic.title,
                         isFavourite: topic.isFavourite,
-                      ))
-                  .toList(),
+                        isDownloaded: isDownloadedSnapshot.data!,
+                      );
+                    } else {
+                      return const Center(child: Text('Ошибка'));
+                    }
+                  },
+                );
+              }).toList(),
             ),
           );
         } else {

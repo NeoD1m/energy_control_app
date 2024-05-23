@@ -57,7 +57,7 @@ class RegisterPage extends StatelessWidget {
               TextField(
                 controller: nameController,
                 decoration: const InputDecoration(
-                  hintText: 'Имя',
+                  hintText: 'Логин',
                   border: OutlineInputBorder(),
                 ),
               ),

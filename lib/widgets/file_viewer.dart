@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import '../main.dart';
 
-class PdfViewerWidget extends StatelessWidget {
-  const PdfViewerWidget({super.key, required this.pdfId});
+class FileViewerWidget extends StatelessWidget {
+  const FileViewerWidget({super.key, required this.pdfId});
   final int pdfId;
 
   @override

@@ -13,11 +13,16 @@ dependencies:
   shared_preferences: ^2.0.15
   cupertino_icons: ^1.0.2
   url_launcher: ^6.2.6
+  path_provider: ^2.0.11
+  flutter_pdfview: ^1.0.4
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.13.1"
+  mockito: ^5.0.16
+  http: ^1.2.0
 
 flutter_launcher_icons:
   android: "launcher_icon"

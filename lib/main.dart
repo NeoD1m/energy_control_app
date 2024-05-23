@@ -32,6 +32,7 @@ class _MyAppState extends State<MyApp> {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasData && snapshot.data!) {
               return HomePage(
+                key: homePageKey,
                 update: update,
               );
             } else {

@@ -1,6 +1,8 @@
-import 'package:EnergyControl/widgets/pdf_viewer.dart';
+import 'package:EnergyControl/models/downloaded_file.dart';
+import 'package:EnergyControl/widgets/file_viewer.dart';
 import 'package:flutter/material.dart';
 
+import '../models/downloads.dart';
 import '../models/favourites.dart';
 
 class Topic {
@@ -20,11 +22,12 @@ class Topic {
 }
 
 class TopicWidget extends StatefulWidget {
-  TopicWidget({super.key, required this.pdfId, required this.title, required this.isFavourite});
+  TopicWidget({super.key, required this.pdfId, required this.title, required this.isFavourite, required this.isDownloaded});
 
   int pdfId;
   String title;
   bool isFavourite;
+  bool isDownloaded;
 
   @override
   State<TopicWidget> createState() => _TopicWidgetState();
@@ -39,7 +42,6 @@ class _TopicWidgetState extends State<TopicWidget> {
       } else {
         removeFromFavorites(fileId: widget.pdfId);
       }
-      // todo check that request went well
       widget.isFavourite = isFavourite;
     });
   }
@@ -56,7 +58,7 @@ class _TopicWidgetState extends State<TopicWidget> {
                 child: TextButton(
                   onPressed: () => {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PdfViewerWidget(
+                        builder: (context) => FileViewerWidget(
                               pdfId: widget.pdfId,
                             )))
                   },
@@ -75,6 +77,22 @@ class _TopicWidgetState extends State<TopicWidget> {
                       child: Text(widget.title,
                           style: const TextStyle(fontSize: 14.0))),
                 ),
+              ),
+              IconButton(
+                icon: Icon(
+                  widget.isDownloaded ? Icons.delete_forever : Icons.download_outlined,
+                  color: widget.isDownloaded ? Theme.of(context).colorScheme.inversePrimary : Colors.grey,
+                ),
+                onPressed: () {
+                  if (widget.isDownloaded){
+                    deleteDownloadedFile(widget.pdfId);
+                  } else {
+                    downloadAndSavePdf(id: widget.pdfId, title: widget.title, type: ''); // todo maybe add type to sort
+                  }
+                  setState(() {
+                    widget.isDownloaded = !widget.isDownloaded;
+                  });
+                },
               ),
               IconButton(
                 icon: Icon(

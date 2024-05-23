@@ -64,6 +64,11 @@ class MenuDrawer extends StatelessWidget {
               onTap: () => setPageNumber(PageType.info),
             ),
             ListTile(
+              leading: const Icon(Icons.download),
+              title: const Text("Загрузки"),
+              onTap: () => setPageNumber(PageType.downloads),
+            ),
+            ListTile(
               leading: const Icon(Icons.help),
               title: const Text("Помощь"),
               onTap: () => setPageNumber(PageType.help),

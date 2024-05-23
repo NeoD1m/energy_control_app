@@ -7,7 +7,10 @@ import 'package:EnergyControl/widgets/navigation_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum PageType { news, search, bookmarks, help, info }
+import 'downloads.dart';
+
+enum PageType { news, search, bookmarks, help, info, downloads}
+final GlobalKey<_HomePageState> homePageKey = GlobalKey<_HomePageState>();
 
 class HomePage extends StatefulWidget {
   HomePage({super.key, required this.update});
@@ -20,6 +23,7 @@ class HomePage extends StatefulWidget {
     PageType.bookmarks: BookmarksPage(),
     PageType.info: const InfoPage(),
     PageType.help: const HelpPage(),
+    PageType.downloads: const DownloadsPage(),
   };
 
   @override

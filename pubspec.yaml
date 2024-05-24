@@ -1,7 +1,7 @@
 name: EnergyControl
 description: "Кросс-платформенное мобильное приложение для мониторинга соответствия законодательным нормам в нефтегазовой отрасли"
 publish_to: 'none'
-version: 1.0.0+7
+version: 1.0.0+8
 
 environment:
   sdk: '>=3.2.2 <4.0.0'
@@ -23,6 +23,7 @@ dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
   mockito: ^5.0.16
   http: ^1.2.0
+  shared_preferences:
 
 flutter_launcher_icons:
   android: "launcher_icon"

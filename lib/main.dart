@@ -3,7 +3,7 @@ import 'package:EnergyControl/pages/home.dart';
 import 'package:EnergyControl/pages/register.dart';
 import 'package:flutter/material.dart';
 
-const String apiUrl = "http://93.183.92.41";
+const String apiUrl = "http://energy-control.online";
 
 void main() {
   runApp(const MyApp());
